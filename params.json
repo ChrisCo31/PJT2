@@ -1,0 +1,4 @@
+{
+    "BUCKET_NAME": "datasiteS3",
+    "REGION": "eu-west-1"
+}
