@@ -1,14 +1,56 @@
 #!/usr/bin/env python3
 from utils import s3 
+from utils import dynamodb
+import json
+import boto3
+from utils import functions as utility
 
 def main():
 
-    bucket_name = "s3p2.chrisco.fr"
-    region = "eu-west-1"
-
+    config = utility.loadConfigFile()
+    
+    bucket_name = config["BUCKET_NAME"]
+    region = config["REGION"]
+    dbname = config["DYNAMODB"]
+    #create s3bucket
     s3.create_bucket(bucket_name, region)
+    dynamodb = boto3.resource('dynamodb')
+    #dynamodb.create_table()
+    table = dynamodb.create_table(
+    TableName= dbname,
+    KeySchema=[
+        {
+            'AttributeName': 'word',
+            'KeyType': 'HASH'
+        },
+        {
+            'AttributeName': 'occurence',
+            'KeyType': 'RANGE'
+        }
+    ],
+    AttributeDefinitions=[
+        {
+            'AttributeName': 'word',
+            'AttributeType': 'S'
+        },
+        {
+            'AttributeName': 'occurence',
+            'AttributeType': 'S'
+        },
+
+    ],
+    ProvisionedThroughput={
+        'ReadCapacityUnits': 5,
+        'WriteCapacityUnits': 5
+    }
+)
 
     pass
 
 if __name__ == "__main__":
     main()
+    
+    
+    
+   
+

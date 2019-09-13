@@ -1,4 +1,5 @@
 {
-    "BUCKET_NAME": "datasiteS3",
-    "REGION": "eu-west-1"
+    "BUCKET_NAME": "s3p2.chrisco.fr",
+    "REGION": "eu-west-1",
+    "DYNAMODB": "dynamodb"
 }
