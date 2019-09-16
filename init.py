@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 from utils import s3 
 from utils import dynamodb
+from utils import apigateway
+from utils import lambdaRes
+
 import json
 import boto3
 from utils import functions as utility
@@ -44,7 +47,17 @@ def main():
         'WriteCapacityUnits': 5
     }
 )
-
+    client = boto3.client('lambda')
+    FunctionName=config["FUNCTIONL"]
+    Runtime= config["RUNTIME"]
+    lambdaRes.create_function(
+            response = client.create_function(
+            FunctionName='FunctionName',
+            Runtime='Runtime',
+            Role='string',
+            Handler='us1',
+    )
+)
     pass
 
 if __name__ == "__main__":

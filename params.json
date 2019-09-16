@@ -1,5 +1,8 @@
 {
-    "BUCKET_NAME": "s3p2.chrisco.fr",
+    "BUCKET_NAME": "s3p2.chrisco1.fr",
     "REGION": "eu-west-1",
-    "DYNAMODB": "dynamodb"
+    "DYNAMODB": "dynamodb",
+    "FUNCTIONL": "countWord",
+    "RUNTIME" : "Python3.7",
+    "ROLE" : ""
 }
