@@ -24,7 +24,7 @@ def associate_f_dict(file, dict):
     return dict_textresult
 
 def user_stat(myfiles,wordlist):
-#returns the list of uploaded files of the user, with the research results
+    #returns the list of uploaded files of the user, with the research results
     user_results = []
     for file in myfiles:
         r_clean = clean_text(file)

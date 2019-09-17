@@ -33,6 +33,6 @@ config = utility.loadConfigFile()
 bucket_name = config["BUCKET_NAME"]
 region = config["REGION"]
 dbname = config["DYNAMODB"]
-key_name = 'text.txt'
+key_name = 'text2.txt'
 file_name = "data/" + key_name
 s3.upload_file(file_name, bucket_name, key_name)
