@@ -1,0 +1,12 @@
+{
+    "user" : "chrisco",
+    "text" : "text.txt",
+    "createdAt" : "datetime",
+    "updatedAt": "datetime",
+    "words" : {
+        "word1" : "5",
+        "word2" : "4",
+        "word3" : "5"
+    }
+}
+

@@ -23,24 +23,15 @@ def main():
     TableName= dbname,
     KeySchema=[
         {
-            'AttributeName': 'word',
+            'AttributeName': 'text',
             'KeyType': 'HASH'
-        },
-        {
-            'AttributeName': 'occurence',
-            'KeyType': 'RANGE'
         }
     ],
     AttributeDefinitions=[
         {
-            'AttributeName': 'word',
+            'AttributeName': 'text',
             'AttributeType': 'S'
-        },
-        {
-            'AttributeName': 'occurence',
-            'AttributeType': 'S'
-        },
-
+        }
     ],
     ProvisionedThroughput={
         'ReadCapacityUnits': 5,

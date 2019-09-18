@@ -1,3 +1,6 @@
+import datetime
+import json
+
 def clean_text(file):
     #Function which cleans the text of the file in parameter
     with open(file, 'r') as text:
@@ -17,25 +20,27 @@ def search_w_t(wordlist, text_clean):
     #print (dict_w_o)
     return dict_w_o
 
-def associate_f_dict(file, dict):
-#associate file name to the word/occurrence dictionnary. Returns a dictionnary
-    dict_textresult = {}
-    dict_textresult[file] = dict
-    return dict_textresult
 
-def user_stat(myfiles,wordlist):
-    #returns the list of uploaded files of the user, with the research results
-    user_results = []
-    for file in myfiles:
-        r_clean = clean_text(file)
-        r_search = search_w_t(wordlist, r_clean)
-        r_associate = associate_f_dict(file,r_search)
-        user_results.append(r_associate)
-    return user_results
-
-myfiles = ['data/text.txt', 'data/text2.txt']
+myfiles = 'data/text.txt'
 wordlist = ['accord', 'fisc', 'moteur', 'grâce']
-user_results = []
-user_results = user_stat (myfiles, wordlist)
 
-print (user_results)
+
+def retrieve_data(file, dict_w_o):
+#create the whole dictionary (python object) in the same dataformat as the dynamodb
+    dict_data = {
+        "user" : "chrisco",
+        "text" : file,
+        "date": datetime.datetime.today().strftime('%Y-%m-%d'),
+        "words" : dict_w_o
+    }
+    return dict_data
+
+def put_item(dict_data):
+    return json.dump(dict_data)
+
+
+c=clean_text(myfiles)
+s=search_w_t(wordlist, c)
+p=retrieve_data(myfiles,s)
+j=put_item(p)
+print (p)
