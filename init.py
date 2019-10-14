@@ -2,6 +2,11 @@
 from utils import s3 
 from utils import dynamodb
 from utils import apigateway
+<<<<<<< HEAD
+=======
+from utils import lambdaRes
+
+>>>>>>> a234aa43f920e02c7ccecf6811c9d313989ebe0c
 import json
 import boto3
 from utils import functions as utility
@@ -23,33 +28,38 @@ def main():
     TableName= dbname,
     KeySchema=[
         {
-            'AttributeName': 'word',
+            'AttributeName': 'text',
             'KeyType': 'HASH'
-        },
-        {
-            'AttributeName': 'occurence',
-            'KeyType': 'RANGE'
         }
     ],
     AttributeDefinitions=[
         {
-            'AttributeName': 'word',
+            'AttributeName': 'text',
             'AttributeType': 'S'
-        },
-        {
-            'AttributeName': 'occurence',
-            'AttributeType': 'S'
-        },
-
+        }
     ],
     ProvisionedThroughput={
         'ReadCapacityUnits': 5,
         'WriteCapacityUnits': 5
     }
 )
+<<<<<<< HEAD
     apigateway = boto3.resource('apigateway')
     apigateway.create_api('MyApi', 'Myapi', 'stack')
 
+=======
+    client = boto3.client('lambda')
+    FunctionName=config["FUNCTIONL"]
+    Runtime= config["RUNTIME"]
+    lambdaRes.create_function(
+            response = client.create_function(
+            FunctionName='FunctionName',
+            Runtime='Runtime',
+            Role='string',
+            Handler='us1',
+    )
+)
+>>>>>>> a234aa43f920e02c7ccecf6811c9d313989ebe0c
     pass
 
 if __name__ == "__main__":
