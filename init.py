@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from utils import s3 
 from utils import dynamodb
+from utils import apigateway
 import json
 import boto3
 from utils import functions as utility
@@ -12,6 +13,8 @@ def main():
     bucket_name = config["BUCKET_NAME"]
     region = config["REGION"]
     dbname = config["DYNAMODB"]
+   
+
     #create s3bucket
     s3.create_bucket(bucket_name, region)
     dynamodb = boto3.resource('dynamodb')
@@ -44,6 +47,8 @@ def main():
         'WriteCapacityUnits': 5
     }
 )
+    apigateway = boto3.resource('apigateway')
+    apigateway.create_api('MyApi', 'Myapi', 'stack')
 
     pass
 
@@ -54,3 +59,10 @@ if __name__ == "__main__":
     
    
 
+# https://docs.aws.amazon.com/code-samples/latest/catalog/python-apigateway-aws_service-aws_service.py.html
+# https://docs.aws.amazon.com/apigateway/api-reference/resource/resources/
+# https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-resource.html
+# https://docs.aws.amazon.com/en_pv/code-samples/latest/catalog/python-apigateway-aws_service-aws_service.py.html
+#  Deploying and Configuring Lambda Functions for Our API Using the AWS Console 
+# https://github.com/cleesmith/boto3_test
+# https://github.com/linuxacademy/content-lambda-boto3/tree/master/DynamoDB
